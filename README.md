@@ -6,7 +6,7 @@
 1. Клонируйте репозиторий и перейдите в папку, где находятся файлы конфигурации:
 
 ```
-git clone https://github.com/Diyckstra/KDouble_InfoSec_First_Terraform.git && cd terraform-examples/quick_start
+git clone https://github.com/Diyckstra/KDouble_InfoSec_First_Terraform.git && cd KDouble_InfoSec_First_Terraform/
 ```
 
 2. Скопируйте шаблон переменных окружения с их значениями из файла-примера:
