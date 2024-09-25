@@ -1,0 +1,19 @@
+# Terraform variables
+
+# Configure token
+admin = {
+    C2_PROJECT      = "Network_Security"        # Профиль -> Проекты -> ID
+    BASE_ACCESS_KEY = "YOUR MAIL @domain.ru"     # BASE_ACCESS_KEY from c2rc.sh
+    EC2_SECRET_KEY  = "Super_Secret_Key_!@#$"   # EC2_SECRET_KEY from c2rc.sh
+}
+
+az               = "ru-msk-comp1p"      # зона доступности, valid values: ru-msk-comp1p / ru-msk-vol51 / ru-msk-vol52
+vms_count        = 2                    # количество виртуалок 
+vm_name_prefix   = "example_vm"         # префикс для названия виртуалки
+vm_template      = "cmi-D01767A6"       # идентификатор образа
+vm_instance_type = "m5.2small"          # CPU/RAM виртуалки
+vm_volume_type   = "gp2"                # тип диска, valid values: st2 / gp2 / io2
+vm_volume_size   = 320                  # размер диска
+vm_subnet        = "subnet-8510C941"    # идентификатор сети, в которой будут размещены интерфейсы
+vm_securitygroup = "sg-8CFD395B"        # идентификатор группы безопасности, которая будет прикреплена к созданному интерфейсу
+vm_private_ip    = ["172.31.0.71", "172.31.0.72"]   # список IP-адресов, которые будут назначены виртуальным машинам соответственно

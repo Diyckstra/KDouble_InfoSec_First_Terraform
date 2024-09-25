@@ -1,0 +1,6 @@
+c2rc.sh
+terraform.tfvars
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
