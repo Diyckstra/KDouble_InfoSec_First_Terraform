@@ -1,0 +1,18 @@
+#cloud-config
+users:
+  - default
+  - name: ${username}
+    gecos: ${username}
+    primary_group: ${username}
+    groups: users, admin
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock-passwd: false    
+    ssh_authorized_keys:
+      - ${ansible_ssh_key}
+      - ${admin_ssh_key}
+
+runcmd:
+  - sed -i 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+  - sed -i 's/^PubkeyAuthentication no/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+  - systemctl restart sshd

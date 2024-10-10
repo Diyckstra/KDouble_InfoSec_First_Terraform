@@ -1,0 +1,10 @@
+---
+- name: Initialize Ubuntu
+  hosts: all
+  roles:
+    - { role: init_ubuntu, become: true, message: "Initialize Ubuntu" }
+
+- name: Install Nginx
+  hosts: all
+  roles:
+    - { role: nginx, become: true, message: "Install Nginx" }

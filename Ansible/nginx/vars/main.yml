@@ -1,0 +1,6 @@
+---
+# vars file for nginx
+nginx_path: /etc/nginx
+http_port:
+  - 80
+  - 8080

@@ -4,11 +4,13 @@ variable "admin" {
         C2_PROJECT = string
         BASE_ACCESS_KEY = string
         EC2_SECRET_KEY = string
+        Administrator_SSH_Pub_key = string
     })
   default = {
     C2_PROJECT      = "Network_Security"
     BASE_ACCESS_KEY = "YOUR MAIL @dit10.ru"
     EC2_SECRET_KEY  = "Super_Secret_Key_!@#$"
+    Administrator_SSH_Pub_key = ""
   }
 }
 
@@ -49,8 +51,4 @@ variable "vm_subnet" {
 
 variable "vm_securitygroup" {
   default     = ""
-}
-
-variable "vm_private_ip" {
-  default     = []
 }

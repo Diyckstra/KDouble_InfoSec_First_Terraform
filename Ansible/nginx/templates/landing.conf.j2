@@ -1,0 +1,8 @@
+server {
+	listen {{ item }};
+	listen [::]:{{ item }};
+	location / {
+		root /data/landing_{{ item }}/www;
+		index index.html;
+	}
+}

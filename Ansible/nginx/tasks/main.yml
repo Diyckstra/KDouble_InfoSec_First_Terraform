@@ -1,0 +1,53 @@
+---
+# tasks file for nginx
+- name: Install Nginx Web Server on Ubuntu
+  apt:
+    update_cache: yes
+    name: nginx
+    state: present
+
+- name: Start and autostart Nginx Web Server on Ubuntu
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started
+
+- name: Upload index.html
+  ansible.builtin.copy:
+      src: index.html
+      dest: /data/landing_{{ item }}/www/
+      remote_src: no
+  loop: "{{ http_port }}"
+  notify:
+    - reload_nginx
+
+- name: Write nginx.conf
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_path }}/nginx.conf"
+  notify:
+    - reload_nginx
+
+- name: Write Nginx virtualhost configs 
+  ansible.builtin.template:
+    src: landing.conf.j2
+    dest: "{{ nginx_path }}/sites-available/landing_{{ item }}.conf"
+  loop: "{{ http_port }}"
+  notify:
+    - reload_nginx
+
+- name: Remove default site symlink
+  file:
+    path: "{{ nginx_path }}/sites-enabled/default"
+    state: absent
+  notify:
+    - reload_nginx
+
+- name: Create new symbolic links with new sites
+  ansible.builtin.file:
+    src: "{{ nginx_path }}/sites-available/landing_{{ item }}.conf"
+    dest: "{{ nginx_path }}/sites-enabled/landing_{{ item }}.conf"
+    state: link
+  loop: "{{ http_port }}"
+  notify:
+    - reload_nginx

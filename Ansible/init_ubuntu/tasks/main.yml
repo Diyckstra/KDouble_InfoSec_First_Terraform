@@ -1,0 +1,15 @@
+---
+# tasks file for init_ubuntu
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  ansible.builtin.apt:
+    update_cache: yes
+  become: true
+  become_user: root
+
+- name: Update all packages to their latest version
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+  become: true
+  become_user: root
